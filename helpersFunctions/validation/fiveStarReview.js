@@ -9,7 +9,10 @@ export function generateFiveStarReview() {
 	return review;
 }
 
-// Exemple d'utilisation
+/*********Exemple d'utilisation
+ * 
 import { generateFiveStarReview } from './fiveStarReview';
 const review = generateFiveStarReview();
 console.log(`Avis généré : ${JSON.stringify(review)}`);
+
+*/

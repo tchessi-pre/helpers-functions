@@ -13,8 +13,8 @@ export function makeReservation(customerName, reservationDate, partySize) {
 	return reservation;
 }
 
+/******* Exemple d'utilisation
 
-// Exemple d'utilisation
 import { makeReservation } from './reservationHelpers';
 
 const customerName = 'John Doe';
@@ -24,3 +24,5 @@ const partySize = 4;
 const reservation = makeReservation(customerName, reservationDate, partySize);
 
 console.log(`Réservation effectuée : ${JSON.stringify(reservation)}`);
+
+*/

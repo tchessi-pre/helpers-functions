@@ -1,35 +1,49 @@
-// Vérifier si un mot de passe est valide
-export function isValidPassword(password) {
-	// Au moins 8 caractères
-	if (password.length < 8) {
-		return false;
-	}
-
-	// Au moins une lettre majuscule
-	if (!/[A-Z]/.test(password)) {
-		return false;
-	}
-
-	// Au moins une lettre minuscule
-	if (!/[a-z]/.test(password)) {
-		return false;
-	}
-
-	// Au moins un chiffre
-	if (!/[0-9]/.test(password)) {
-		return false;
-	}
-
-	// Peut contenir des caractères spéciaux (par exemple, !@#$%^&)
-	if (!/[!@#$%^&*]/.test(password)) {
-		return false;
-	}
-
-	// Aucun espace blanc
-	if (/\s/.test(password)) {
-		return false;
-	}
-
-	// Si toutes les conditions sont remplies, le mot de passe est valide
-	return true;
+// Fonction pour vérifier la longueur minimale du mot de passe
+export function hasMinLength(password, minLength) {
+	return password.length >= minLength;
 }
+
+// Fonction pour vérifier la présence de lettres majuscules dans le mot de passe
+export function hasUpperCase(password) {
+	return /[A-Z]/.test(password);
+}
+
+// Fonction pour vérifier la présence de lettres minuscules dans le mot de passe
+export function hasLowerCase(password) {
+	return /[a-z]/.test(password);
+}
+
+// Fonction pour vérifier la présence de chiffres dans le mot de passe
+export function hasDigit(password) {
+	return /\d/.test(password);
+}
+
+// Fonction pour vérifier la présence de caractères spéciaux dans le mot de passe
+export function hasSpecialChar(password) {
+	return /[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(password);
+}
+
+// Fonction de validation complète du mot de passe
+export function validatePassword(password, minLength) {
+	return (
+		hasMinLength(password, minLength) &&
+		hasUpperCase(password) &&
+		hasLowerCase(password) &&
+		hasDigit(password) &&
+		hasSpecialChar(password)
+	);
+}
+
+/****** 
+import * as validatePasswordHelpers from './validatePasswordHelpers';
+
+const password = 'MonMotDePasse123!';
+const minLength = 8;
+
+if (validatePasswordHelpers.validatePassword(password, minLength)) {
+  console.log('Le mot de passe est valide.');
+} else {
+  console.log('Le mot de passe est invalide.');
+}
+
+*/

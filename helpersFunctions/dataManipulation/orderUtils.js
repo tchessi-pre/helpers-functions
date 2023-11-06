@@ -26,8 +26,10 @@ export function generateSimpleOrderNumber() {
 	return orderNumber;
 }
 
-/**************** Exemple d'utilisation ******************/ 
-import { generateOrderNumber, generateSimpleOrderNumber } from './orderUtils';
+/**************** Exemple d'utilisation 
+ * 
+ * 
+ import { generateOrderNumber, generateSimpleOrderNumber } from './orderUtils';
 
 // Utilisation de la fonction generateOrderNumber
 const customerId = '12345';
@@ -42,4 +44,7 @@ console.log(
 const simpleOrderNumber = generateSimpleOrderNumber();
 
 console.log(`Numéro de commande simple généré : ${simpleOrderNumber}`);
-/**************** Exemple d'utilisation ******************/ 
+
+*/ 
+
+

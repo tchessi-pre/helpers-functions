@@ -1,4 +1,4 @@
-// helpers.js
+// ShoppingCardHelpers
 
 // Fonction pour initialiser un panier vide
 export function initializeCart() {
