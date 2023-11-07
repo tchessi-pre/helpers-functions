@@ -38,6 +38,34 @@ export function reverseArray(arr) {
 	return [...arr].reverse();
 }
 
+// Trouver l'élément le plus fréquent dans un tableau
+export function findMostFrequentElement(arr) {
+  const elementCount = {};
+  let mostFrequentElement = null;
+  let maxCount = 0;
+
+  arr.forEach((element) => {
+    if (!elementCount[element]) {
+      elementCount[element] = 1;
+    } else {
+      elementCount[element]++;
+    }
+
+    if (elementCount[element] > maxCount) {
+      mostFrequentElement = element;
+      maxCount = elementCount[element];
+    }
+  });
+
+  return mostFrequentElement;
+}
+
+// Vérifier si un tableau est trié de manière ascendante
+export function isSortedAscending(arr) {
+  return arr.every((value, index, array) => index === 0 || value >= array[index - 1]);
+}
+
+
 /******* Exemple d'utilisation 
  * 
  import * as arrayHelpers from './arrayHelpers';
