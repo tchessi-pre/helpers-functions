@@ -35,7 +35,7 @@ export function validatePassword(password, minLength) {
 }
 
 /****** 
-import * as validatePasswordHelpers from './validatePasswordHelpers';
+import * as passwordHelpers from './passwordHelpers';
 
 const password = 'MonMotDePasse123!';
 const minLength = 8;
