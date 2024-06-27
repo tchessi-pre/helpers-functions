@@ -1,0 +1,363 @@
+{
+	"Print to console": {
+		"scope": "javascript,typescript",
+		"prefix": "log",
+		"body": ["console.log('$1');", "$2"],
+		"description": "Log output to console"
+	},
+	"NestJS DTO": {
+		"prefix": "nestjsDTO",
+		"body": [
+			"export class ${1:CreateEntityName}Dto {",
+			"  readonly ${2:propertyName}: ${3:string};",
+			"}"
+		],
+		"description": "Création d'un DTO (Data Transfer Object) NestJS"
+	},
+	"NestJS Authentication Guard": {
+		"prefix": "nestjsAuthGuard",
+		"body": [
+			"import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';",
+			"import { Observable } from 'rxjs';",
+			"import { Request } from 'express';",
+			"",
+			"@Injectable()",
+			"export class ${1:AuthGuardName}Guard implements CanActivate {",
+			"  canActivate(",
+			"    context: ExecutionContext,",
+			"  ): boolean | Promise<boolean> | Observable<boolean> {",
+			"    const request: Request = context.switchToHttp().getRequest();",
+			"    return this.validateRequest(request);",
+			"  }",
+			"",
+			"  private validateRequest(request: Request): boolean {",
+			"    // Add your custom authentication logic here",
+			"    const authToken = request.headers.authorization;",
+			"    if (!authToken) {",
+			"      return false;",
+			"    }",
+			"    // Example: Check if the token is valid",
+			"    // This is just a placeholder logic, replace it with your actual logic",
+			"    if (authToken === 'valid-token') {",
+			"      return true;",
+			"    }",
+			"    return false;",
+			"  }",
+			"}"
+		],
+		"description": "Création d'un Guard NestJS avec logique d'authentification"
+	},
+	"NestJS Service": {
+		"prefix": "nestjsService",
+		"body": [
+			"import { Injectable } from '@nestjs/common';",
+			"",
+			"@Injectable()",
+			"export class ${1:ServiceName}Service {",
+			"  private readonly ${1:serviceName}s: any[] = [];",
+			"",
+			"  findAll() {",
+			"    return this.${1:serviceName}s;",
+			"  }",
+			"",
+			"  findOne(id: string) {",
+			"    return this.${1:serviceName}s.find((item) => item.id === id);",
+			"  }",
+			"",
+			"  create(create${1:ServiceName}Dto: any) {",
+			"    this.${1:serviceName}s.push(create${1:ServiceName}Dto);",
+			"    return create${1:ServiceName}Dto;",
+			"  }",
+			"}"
+		],
+		"description": "Création d'un service NestJS"
+	},
+	"NestJS Controller": {
+		"prefix": "nestjsController",
+		"body": [
+			"import { Controller, Get, Post, Body, Param } from '@nestjs/common';",
+			"import { ${1:ServiceName}Service } from './${1:serviceName}.service';",
+			"",
+			"@Controller('${2:controllerPath}')",
+			"export class ${1:ServiceName}Controller {",
+			"  constructor(private readonly ${1:serviceName}Service: ${1:ServiceName}Service) {}",
+			"",
+			"  @Get()",
+			"  findAll() {",
+			"    return this.${1:serviceName}Service.findAll();",
+			"  }",
+			"",
+			"  @Get(':id')",
+			"  findOne(@Param('id') id: string) {",
+			"    return this.${1:serviceName}Service.findOne(id);",
+			"  }",
+			"",
+			"  @Post()",
+			"  create(@Body() create${1:ServiceName}Dto: Create${1:ServiceName}Dto) {",
+			"    return this.${1:serviceName}Service.create(create${1:ServiceName}Dto);",
+			"  }",
+			"}"
+		],
+		"description": "Création d'un contrôleur NestJS"
+	},
+	"NestJS Module": {
+		"prefix": "nestjsModule",
+		"body": [
+			"import { Module } from '@nestjs/common';",
+			"import { ${1:ServiceName}Controller } from './${1:serviceName}.controller';",
+			"import { ${1:ServiceName}Service } from './${1:serviceName}.service';",
+			"",
+			"@Module({",
+			"  controllers: [${1:ServiceName}Controller],",
+			"  providers: [${1:ServiceName}Service]",
+			"})",
+			"export class ${1:ServiceName}Module {}"
+		],
+		"description": "Création d'un module NestJS"
+	},
+	"NestJS Middleware": {
+		"prefix": "nestjsMiddleware",
+		"body": [
+			"import { Injectable, NestMiddleware } from '@nestjs/common';",
+			"import { Request, Response, NextFunction } from 'express';",
+			"",
+			"@Injectable()",
+			"export class ${1:MiddlewareName}Middleware implements NestMiddleware {",
+			"  use(req: Request, res: Response, next: NextFunction) {",
+			"    console.log('Request...');",
+			"    next();",
+			"  }",
+			"}"
+		],
+		"description": "Création d'un Middleware NestJS"
+	},
+	"NestJS JWT Strategy": {
+		"prefix": "nestjsJwtStrategy",
+		"body": [
+			"import { Strategy, ExtractJwt } from 'passport-jwt';",
+			"import { PassportStrategy } from '@nestjs/passport';",
+			"import { Injectable } from '@nestjs/common';",
+			"import { jwtConstants } from './constants';",
+			"",
+			"@Injectable()",
+			"export class ${1:JwtStrategy} extends PassportStrategy(Strategy) {",
+			"  constructor() {",
+			"    super({",
+			"      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),",
+			"      ignoreExpiration: false,",
+			"      secretOrKey: jwtConstants.secret,",
+			"    });",
+			"  }",
+			"",
+			"  async validate(payload: any) {",
+			"    return { userId: payload.sub, username: payload.username };",
+			"  }",
+			"}"
+		],
+		"description": "Création d'une stratégie JWT avec Passport dans NestJS"
+	},
+	"NestJS JWT Constants": {
+		"prefix": "nestjsJwtConstants",
+		"body": [
+			"export const jwtConstants = {",
+			"  secret: process.env.JWT_SECRET || 'defaultSecret', // Changez 'defaultSecret' par une valeur sécurisée",
+			"};"
+		],
+		"description": "Définition des constantes JWT dans NestJS"
+	},
+	"TypeScript Interface": {
+		"prefix": "tsInterface",
+		"body": [
+			"export interface ${1:InterfaceName} {",
+			"  ${2:propertyName}: ${3:string};",
+			"}"
+		],
+		"description": "Création d'une interface TypeScript"
+	},
+	"TypeScript Enum": {
+		"prefix": "tsEnum",
+		"body": ["export enum ${1:EnumName} {", "  ${2:Key} = '${3:Value}',", "}"],
+		"description": "Création d'un enum TypeScript"
+	},
+	"NestJS Configuration Utility": {
+		"prefix": "nestjsConfig",
+		"body": [
+			"import { ConfigService } from '@nestjs/config';",
+			"",
+			"export function getConfiguration(configService: ConfigService) {",
+			"  return {",
+			"    port: configService.get<number>('PORT', 3000),",
+			"    database: {",
+			"      host: configService.get<string>('DB_HOST', 'localhost'),",
+			"      port: configService.get<number>('DB_PORT', 5432),",
+			"      username: configService.get<string>('DB_USERNAME', 'user'),",
+			"      password: configService.get<string>('DB_PASSWORD', 'password'),",
+			"      database: configService.get<string>('DB_NAME', 'database'),",
+			"    },",
+			"    jwt: {",
+			"      secret: configService.get<string>('JWT_SECRET', 'secretKey'),",
+			"      expiresIn: configService.get<string>('JWT_EXPIRES_IN', '60s'),",
+			"    },",
+			"  };",
+			"}"
+		],
+		"description": "Utilitaire de configuration pour obtenir les valeurs de configuration dans NestJS"
+	},
+	"NestJS Custom Logger Utility": {
+		"prefix": "nestjsCustomLogger",
+		"body": [
+			"import { Logger, Injectable } from '@nestjs/common';",
+			"",
+			"@Injectable()",
+			"export class ${1:CustomLogger} extends Logger {",
+			"  log(message: string) {",
+			"    // Custom logic for log",
+			"    console.log(`[LOG] ${message}`);",
+			"    super.log(message);",
+			"  }",
+			"",
+			"  error(message: string, trace: string) {",
+			"    // Custom logic for error",
+			"    console.error(`[ERROR] ${message} - Trace: ${trace}`);",
+			"    super.error(message, trace);",
+			"  }",
+			"",
+			"  warn(message: string) {",
+			"    // Custom logic for warn",
+			"    console.warn(`[WARN] ${message}`);",
+			"    super.warn(message);",
+			"  }",
+			"",
+			"  debug(message: string) {",
+			"    // Custom logic for debug",
+			"    console.debug(`[DEBUG] ${message}`);",
+			"    super.debug(message);",
+			"  }",
+			"",
+			"  verbose(message: string) {",
+			"    // Custom logic for verbose",
+			"    console.log(`[VERBOSE] ${message}`);",
+			"    super.verbose(message);",
+			"  }",
+			"}"
+		],
+		"description": "Création d'un Logger personnalisé dans NestJS avec des logiques personnalisées"
+	},
+	"NestJS Multer Utility": {
+		"prefix": "nestjsMulter",
+		"body": [
+			"import { diskStorage } from 'multer';",
+			"import { extname } from 'path';",
+			"",
+			"export const multerOptions = {",
+			"  storage: diskStorage({",
+			"    destination: './uploads',",
+			"    filename: (req, file, cb) => {",
+			"      const randomName = Array(32)",
+			"        .fill(null)",
+			"        .map(() => Math.round(Math.random() * 16).toString(16))",
+			"        .join('');",
+			"      cb(null, `${randomName}${extname(file.originalname)}`);",
+			"    },",
+			"  }),",
+			"};"
+		],
+		"description": "Utilitaire de gestion des fichiers avec Multer dans NestJS"
+	},
+	"NestJS Pagination Utility": {
+		"prefix": "nestjsPagination",
+		"body": [
+			"export interface PaginationOptions {",
+			"  page: number;",
+			"  limit: number;",
+			"}",
+			"",
+			"export function paginate<T>(items: T[], options: PaginationOptions): T[] {",
+			"  const { page, limit } = options;",
+			"  const start = (page - 1) * limit;",
+			"  const end = page * limit;",
+			"  return items.slice(start, end);",
+			"}"
+		],
+		"description": "Utilitaire de pagination dans NestJS"
+	},
+	"NestJS Input Validation Service": {
+		"prefix": "nestjsInputValidationService",
+		"body": [
+			"import { Injectable } from '@nestjs/common';",
+			"import * as Joi from 'joi';",
+			"",
+			"@Injectable()",
+			"export class ValidationService {",
+			"  validateUserInput(input: any): Joi.ValidationResult {",
+			"    const schema = Joi.object({",
+			"      username: Joi.string().alphanum().min(3).max(30).required(),",
+			"      password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required(),",
+			"      email: Joi.string().email().required(),",
+			"    });",
+			"    return schema.validate(input);",
+			"  }",
+			"}"
+		],
+		"description": "Service de validation des entrées utilisateur dans NestJS"
+	},
+	"NestJS Email Service": {
+		"prefix": "nestjsEmailService",
+		"body": [
+			"import { Injectable } from '@nestjs/common';",
+			"import * as nodemailer from 'nodemailer';",
+			"",
+			"@Injectable()",
+			"export class EmailService {",
+			"  private transporter = nodemailer.createTransport({",
+			"    host: 'smtp.example.com',",
+			"    port: 587,",
+			"    secure: false,",
+			"    auth: {",
+			"      user: 'your-email@example.com',",
+			"      pass: 'your-email-password',",
+			"    },",
+			"  });",
+			"",
+			"  async sendMail(to: string, subject: string, text: string) {",
+			"    const mailOptions = {",
+			"      from: 'your-email@example.com',",
+			"      to,",
+			"      subject,",
+			"      text,",
+			"    };",
+			"    return await this.transporter.sendMail(mailOptions);",
+			"  }",
+			"}"
+		],
+		"description": "Service d'email avec Nodemailer dans NestJS"
+	},
+	"NestJS Encryption Utility": {
+		"prefix": "nestjsEncryption",
+		"body": [
+			"import * as crypto from 'crypto';",
+			"",
+			"const algorithm = 'aes-256-ctr';",
+			"const secretKey = process.env.ENCRYPTION_KEY || 'vOVH6sdmpNWjRRIqCc7rdxs01lwHzfr3';",
+			"const iv = crypto.randomBytes(16);",
+			"",
+			"export function encrypt(text: string): { iv: string; content: string } {",
+			"  const cipher = crypto.createCipheriv(algorithm, secretKey, iv);",
+			"  const encrypted = Buffer.concat([cipher.update(text), cipher.final()]);",
+			"",
+			"  return {",
+			"    iv: iv.toString('hex'),",
+			"    content: encrypted.toString('hex')",
+			"  };",
+			"}",
+			"",
+			"export function decrypt(hash: { iv: string; content: string }): string {",
+			"  const decipher = crypto.createDecipheriv(algorithm, secretKey, Buffer.from(hash.iv, 'hex'));",
+			"  const decrypted = Buffer.concat([decipher.update(Buffer.from(hash.content, 'hex')), decipher.final()]);",
+			"",
+			"  return decrypted.toString();",
+			"}"
+		],
+		"description": "Utilitaire de chiffrement dans NestJS"
+	}
+}

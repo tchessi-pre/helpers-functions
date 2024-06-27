@@ -1,0 +1,143 @@
+{
+	"CSS Variables": {
+		"prefix": "cssvars",
+		"body": [
+			":root {",
+			"    --main-color: ${1:#333};",
+			"    --secondary-color: ${2:#666};",
+			"    --padding: ${3:16px};",
+			"}"
+		],
+		"description": "Define CSS custom properties (variables)"
+	},
+	"Responsive Font Size": {
+		"prefix": "fontresponsive",
+		"body": ["font-size: clamp(${1:1rem}, ${2:2vw}, ${3:2rem});"],
+		"description": "Set responsive font size using clamp()"
+	},
+	"Box Model": {
+		"prefix": "boxmodel",
+		"body": [
+			"margin: ${1:0};",
+			"padding: ${2:0};",
+			"border: ${3:none};",
+			"box-sizing: border-box;"
+		],
+		"description": "Set up margin, padding, border, and box-sizing quickly"
+	},
+	"CSS Transition": {
+		"prefix": "transition",
+		"body": ["transition: ${1:property} ${2:time}s ${3:ease};"],
+		"description": "Create a CSS transition for properties"
+	},
+	"Center with Position": {
+		"prefix": "centerpos",
+		"body": [
+			"position: absolute;",
+			"top: 50%;",
+			"left: 50%;",
+			"transform: translate(-50%, -50%);"
+		],
+		"description": "Center an element absolutely to the middle of its nearest positioned ancestor"
+	},
+	"Center with Grid": {
+		"prefix": "centergrid",
+		"body": ["display: grid;", "place-items: center;"],
+		"description": "Center an element horizontally and vertically using CSS Grid"
+	},
+	"Center with Flexbox": {
+		"prefix": "centerflex",
+		"body": [
+			"display: flex;",
+			"justify-content: center;",
+			"align-items: center;"
+		],
+		"description": "Center an element horizontally and vertically using Flexbox"
+	},
+	"Flex Container": {
+		"prefix": "flexcontainer",
+		"body": [
+			"display: flex;",
+			"flex-direction: ${1|row,row-reverse,column,column-reverse|};",
+			"justify-content: ${2|flex-start,flex-end,center,space-between,space-around,space-evenly|};",
+			"align-items: ${3|stretch,center,baseline,flex-start,flex-end|};"
+		],
+		"description": "Create a flex container"
+	},
+	"Box Shadow": {
+		"prefix": "bshadow",
+		"body": [
+			"box-shadow: ${1:h-offset} ${2:v-offset} ${3:blur-radius} ${4:spread-radius} ${5:color};"
+		],
+		"description": "Apply box shadow"
+	},
+	"Gradient Background": {
+		"prefix": "bg-gradient",
+		"body": [
+			"background: linear-gradient(${1:angle}, ${2:color1}, ${3:color2});"
+		],
+		"description": "Create a linear gradient background"
+	},
+	"Hover Effect": {
+		"prefix": "hover",
+		"body": [
+			"&:hover {",
+			"    transform: scale(${1:1.1});",
+			"    transition: transform 0.3s ease-in-out;",
+			"}"
+		],
+		"description": "Apply a hover effect that scales the element"
+	},
+	"Box Model All-In-One": {
+		"prefix": "boxall",
+		"body": [
+			"margin: ${1:0};",
+			"padding: ${2:0};",
+			"border: ${3:1px solid #000};",
+			"width: ${4:100px};",
+			"height: ${5:100px};",
+			"box-sizing: border-box;"
+		],
+		"description": "Quick setup for the box model with width and height"
+	},
+	"Image Shadow": {
+		"prefix": "img-shadow",
+		"body": [
+			"img.${1:shadowed} {",
+			"    box-shadow: ${2:0 4px 8px rgba(0,0,0,0.1)};",
+			"}"
+		],
+		"description": "Add a shadow effect to images"
+	},
+	"Responsive Image": {
+		"prefix": "img-resp",
+		"body": [
+			"img.${1:responsive} {",
+			"    width: 100%;",
+			"    height: auto;",
+			"}"
+		],
+		"description": "Make images responsive to the container size"
+	},
+	"Circular Image": {
+		"prefix": "img-circle",
+		"body": [
+			"img.${1:circle} {",
+			"    border-radius: 50%;",
+			"    width: ${2:100px};",
+			"    height: ${2:100px};",
+			"    object-fit: cover;}"
+		],
+		"description": "Style an image to be circular"
+	},
+	"Image Border": {
+		"prefix": "img-border",
+		"body": [
+			"img.${1:bordered} {",
+			"    border: ${2:1px solid #ccc};",
+			"    padding: ${3:5px};",
+			"}"
+		],
+		"description": "Add a border and padding to an image"
+	}
+}

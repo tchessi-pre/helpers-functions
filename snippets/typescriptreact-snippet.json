@@ -1,0 +1,122 @@
+{
+	"Print to console": {
+		"prefix": "log",
+		"body": ["console.log('$1');", "$2"],
+		"description": "Log output to console"
+	},
+	"Enum DTO": {
+		"prefix": "enumDTO",
+		"body": [
+			"export enum ${1:EnumName} {",
+			"  ${2:Value1} = '${2:Value1}',",
+			"  ${3:Value2} = '${3:Value2}',",
+			"  ${4:/* add more values here */}",
+			"}"
+		],
+		"description": "Create a TypeScript enum for a DTO"
+	},
+	"Interface DTO": {
+		"prefix": "interfaceDTO",
+		"body": [
+			"export interface ${1:DtoName} {",
+			"  ${2:propertyName}: ${3:propertyType};",
+			"  ${4:/* add more properties here */}",
+			"}"
+		],
+		"description": "Create a TypeScript interface for a DTO"
+	},
+	"Interface with multiple properties": {
+		"prefix": "interfaceMultipleProps",
+		"body": [
+			"export interface ${1:DtoName} {",
+			"  ${2:propertyName1}: ${3:propertyType1};",
+			"  ${4:propertyName2}: ${5:propertyType2};",
+			"  ${6:propertyName3}?: ${7:propertyType3};",
+			"  ${8:/* add more properties here */}",
+			"}"
+		],
+		"description": "Create a TypeScript interface with multiple properties for a DTO"
+	},
+	"TypeScript Class": {
+		"prefix": "tsClass",
+		"body": [
+			"class ${1:ClassName} {",
+			"  private ${2:propertyName}: ${3:propertyType};",
+			"",
+			"  constructor(${2:propertyName}: ${3:propertyType}) {",
+			"    this.${2:propertyName} = ${2:propertyName};",
+			"  }",
+			"",
+			"  ${4:methodName}(${5:params}): ${6:returnType} {",
+			"    ${7:// method body}",
+			"  }",
+			"}"
+		],
+		"description": "Create a TypeScript class with constructor and method"
+	},
+	"TypeScript Type Alias": {
+		"prefix": "tsType",
+		"body": [
+			"type ${1:TypeName} = {",
+			"  ${2:propertyName}: ${3:propertyType};",
+			"  ${4:/* add more properties here */}",
+			"};"
+		],
+		"description": "Create a TypeScript type alias"
+	},
+	"TypeScript Redux Reducer Interface": {
+		"prefix": "tsReduxReducer",
+		"body": [
+			"interface ${1:StateType} {",
+			"  ${2:/* state properties */}",
+			"}",
+			"",
+			"type ${3:ActionType} =",
+			"  | { type: '${4:ACTION_TYPE_1}'; payload: ${5:PayloadType1} }",
+			"  | { type: '${6:ACTION_TYPE_2}'; payload: ${7:PayloadType2} };",
+			"",
+			"const initialState: ${1:StateType} = {",
+			"  ${8:/* initial state values */}",
+			"};",
+			"",
+			"const ${9:reducerName} = (state: ${1:StateType} = initialState, action: ${3:ActionType}): ${1:StateType} => {",
+			"  switch (action.type) {",
+			"    case '${4:ACTION_TYPE_1}':",
+			"      return {",
+			"        ...state,",
+			"        ${10:/* state updates */}",
+			"      };",
+			"    case '${6:ACTION_TYPE_2}':",
+			"      return {",
+			"        ...state,",
+			"        ${11:/* state updates */}",
+			"      };",
+			"    default:",
+			"      return state;",
+			"  }",
+			"};"
+		],
+		"description": "Create a TypeScript interface for a Redux reducer"
+	},
+	"TypeScript React Functional Component": {
+		"prefix": "tsReactFunction",
+		"body": [
+			"import React from 'react';",
+			"",
+			"interface ${1:Props} {",
+			"  ${2:/* add props here */}",
+			"}",
+			"",
+			"const ${3:ComponentName}: React.FC<${1:Props}> = ({ ${4:props} }) => {",
+			"  return (",
+			"    <div>",
+			"      ${5:/* component code here */}",
+			"    </div>",
+			"  );",
+			"};",
+			"",
+			"export default ${3:ComponentName};"
+		],
+		"description": "Create a TypeScript React functional component"
+	}
+}

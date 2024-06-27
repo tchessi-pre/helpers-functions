@@ -1,0 +1,266 @@
+{
+	"Strapi Model": {
+		"prefix": "strapiModel",
+		"body": [
+			"module.exports = {",
+			"  info: {",
+			"    name: '${1:modelName}',",
+			"    description: '${2:description}',",
+			"  },",
+			"  attributes: {",
+			"    ${3:attributeName}: {",
+			"      type: '${4:string}',",
+			"      ${5:required: true}",
+			"    }",
+			"  }",
+			"};"
+		],
+		"description": "Création d'un modèle Strapi"
+	},
+	"Strapi Controller": {
+		"prefix": "strapiController",
+		"body": [
+			"'use strict';",
+			"",
+			"module.exports = {",
+			"  async ${1:customAction}(ctx) {",
+			"    try {",
+			"      // Custom controller logic",
+			"      ctx.send({ message: 'Custom action executed' });",
+			"    } catch (err) {",
+			"      ctx.send({ error: err.message });",
+			"    }",
+			"  },",
+			"};"
+		],
+		"description": "Création d'un contrôleur Strapi"
+	},
+	"Strapi Service": {
+		"prefix": "strapiService",
+		"body": [
+			"'use strict';",
+			"",
+			"module.exports = {",
+			"  ${1:customService}(params) {",
+			"    // Custom service logic",
+			"    return 'Custom service response';",
+			"  },",
+			"};"
+		],
+		"description": "Création d'un service Strapi"
+	},
+	"Strapi Route": {
+		"prefix": "strapiRoute",
+		"body": [
+			"'use strict';",
+			"",
+			"module.exports = {",
+			"  routes: [",
+			"    {",
+			"      method: 'GET',",
+			"      path: '/${1:path}',",
+			"      handler: '${2:controller}.${3:action}',",
+			"      config: {",
+			"        policies: [],",
+			"        middlewares: [],",
+			"      },",
+			"    },",
+			"  ],",
+			"};"
+		],
+		"description": "Création d'une route Strapi"
+	},
+	"Strapi Routes Config": {
+		"prefix": "strapiRoutesConfig",
+		"body": [
+			"'use strict';",
+			"",
+			"module.exports = {",
+			"  routes: [",
+			"    {",
+			"      method: 'GET',",
+			"      path: '/${1:path}',",
+			"      handler: '${2:controller}.${3:action}',",
+			"      config: {",
+			"        policies: [],",
+			"        middlewares: [],",
+			"      },",
+			"    },",
+			"    {",
+			"      method: 'POST',",
+			"      path: '/${4:path}',",
+			"      handler: '${5:controller}.${6:action}',",
+			"      config: {",
+			"        policies: [],",
+			"        middlewares: [],",
+			"      },",
+			"    },",
+			"  ],",
+			"};"
+		],
+		"description": "Configuration des routes dans Strapi"
+	},
+	"Strapi Middleware": {
+		"prefix": "strapiMiddleware",
+		"body": [
+			"'use strict';",
+			"",
+			"module.exports = async (ctx, next) => {",
+			"  // Custom middleware logic",
+			"  console.log('Middleware executed');",
+			"  await next();",
+			"};"
+		],
+		"description": "Création d'un middleware Strapi"
+	},
+	"Strapi Lifecycle Hook beforeCreate": {
+		"prefix": "strapiBeforeCreateHook",
+		"body": [
+			"'use strict';",
+			"",
+			"module.exports = {",
+			"  async beforeCreate(event) {",
+			"    // Custom logic before creating an entry",
+			"    const { data } = event.params;",
+			"    console.log('Before create:', data);",
+			"  }",
+			"};"
+		],
+		"description": "Hook de cycle de vie beforeCreate dans Strapi"
+	},
+	"Strapi Lifecycle Hook afterCreate": {
+		"prefix": "strapiAfterCreateHook",
+		"body": [
+			"'use strict';",
+			"",
+			"module.exports = {",
+			"  async afterCreate(event) {",
+			"    // Custom logic after creating an entry",
+			"    const { result } = event;",
+			"    console.log('After create:', result);",
+			"  }",
+			"};"
+		],
+		"description": "Hook de cycle de vie afterCreate dans Strapi"
+	},
+	"Strapi Lifecycle Hook beforeUpdate": {
+		"prefix": "strapiBeforeUpdateHook",
+		"body": [
+			"'use strict';",
+			"",
+			"module.exports = {",
+			"  async beforeUpdate(event) {",
+			"    // Custom logic before updating an entry",
+			"    const { data } = event.params;",
+			"    console.log('Before update:', data);",
+			"  }",
+			"};"
+		],
+		"description": "Hook de cycle de vie beforeUpdate dans Strapi"
+	},
+	"Strapi Lifecycle Hook afterUpdate": {
+		"prefix": "strapiAfterUpdateHook",
+		"body": [
+			"'use strict';",
+			"",
+			"module.exports = {",
+			"  async afterUpdate(event) {",
+			"    // Custom logic after updating an entry",
+			"    const { result } = event;",
+			"    console.log('After update:', result);",
+			"  }",
+			"};"
+		],
+		"description": "Hook de cycle de vie afterUpdate dans Strapi"
+	},
+	"Strapi Lifecycle Hook beforeDelete": {
+		"prefix": "strapiBeforeDeleteHook",
+		"body": [
+			"'use strict';",
+			"",
+			"module.exports = {",
+			"  async beforeDelete(event) {",
+			"    // Custom logic before deleting an entry",
+			"    const { where } = event.params;",
+			"    console.log('Before delete:', where);",
+			"  }",
+			"};"
+		],
+		"description": "Hook de cycle de vie beforeDelete dans Strapi"
+	},
+	"Strapi Lifecycle Hook afterDelete": {
+		"prefix": "strapiAfterDeleteHook",
+		"body": [
+			"'use strict';",
+			"",
+			"module.exports = {",
+			"  async afterDelete(event) {",
+			"    // Custom logic after deleting an entry",
+			"    const { result } = event;",
+			"    console.log('After delete:', result);",
+			"  }",
+			"};"
+		],
+		"description": "Hook de cycle de vie afterDelete dans Strapi"
+	},
+	"Strapi Lifecycle Hook beforeFind": {
+		"prefix": "strapiBeforeFindHook",
+		"body": [
+			"'use strict';",
+			"",
+			"module.exports = {",
+			"  async beforeFind(event) {",
+			"    // Custom logic before finding an entry",
+			"    const { where } = event.params;",
+			"    console.log('Before find:', where);",
+			"  }",
+			"};"
+		],
+		"description": "Hook de cycle de vie beforeFind dans Strapi"
+	},
+	"Strapi Lifecycle Hook afterFind": {
+		"prefix": "strapiAfterFindHook",
+		"body": [
+			"'use strict';",
+			"",
+			"module.exports = {",
+			"  async afterFind(event) {",
+			"    // Custom logic after finding an entry",
+			"    const { result } = event;",
+			"    console.log('After find:', result);",
+			"  }",
+			"};"
+		],
+		"description": "Hook de cycle de vie afterFind dans Strapi"
+	},
+	"Strapi Lifecycle Hook beforeCount": {
+		"prefix": "strapiBeforeCountHook",
+		"body": [
+			"'use strict';",
+			"",
+			"module.exports = {",
+			"  async beforeCount(event) {",
+			"    // Custom logic before counting entries",
+			"    const { where } = event.params;",
+			"    console.log('Before count:', where);",
+			"  }",
+			"};"
+		],
+		"description": "Hook de cycle de vie beforeCount dans Strapi"
+	},
+	"Strapi Lifecycle Hook afterCount": {
+		"prefix": "strapiAfterCountHook",
+		"body": [
+			"'use strict';",
+			"",
+			"module.exports = {",
+			"  async afterCount(event) {",
+			"    // Custom logic after counting entries",
+			"    const { result } = event;",
+			"    console.log('After count:', result);",
+			"  }",
+			"};"
+		],
+		"description": "Hook de cycle de vie afterCount dans Strapi"
+	}
+}
