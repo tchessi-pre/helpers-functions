@@ -815,6 +815,32 @@
 		],
 		"description": "Fonction pour générer un UUID"
 	},
+	"Generate Password": {
+		"prefix": "generatePassword",
+		"body": [
+			"// Generate a random password",
+			"export function generatePassword(length = 8, options = {}) {",
+			"    const lowercase = 'abcdefghijklmnopqrstuvwxyz';",
+			"    const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';",
+			"    const numbers = '0123456789';",
+			"    const symbols = '!@#$%^&*()_+[]{}|;:,.<>?';",
+			"",
+			"    let characters = lowercase;",
+			"    if (options.uppercase) characters += uppercase;",
+			"    if (options.numbers) characters += numbers;",
+			"    if (options.symbols) characters += symbols;",
+			"",
+			"    let password = '';",
+			"    for (let i = 0; i < length; i++) {",
+			"        const randomIndex = Math.floor(Math.random() * characters.length);",
+			"        password += characters[randomIndex];",
+			"    }",
+			"",
+			"    return password;",
+			"}"
+		],
+		"description": "Fonction pour générer un mot de passe aléatoire"
+	},
 	"Is Empty Object Helper": {
 		"prefix": "isEmptyObjectHelper",
 		"body": [
@@ -1138,5 +1164,136 @@
 			"module.exports = { encrypt, decrypt };"
 		],
 		"description": "Utilitaire de chiffrement en JavaScript"
+	},
+	"String Helpers": {
+		"prefix": "stringHelpers",
+		"body": [
+			"// Convertir une chaîne en majuscules",
+			"export function toUpperCase(text) {",
+			"\treturn text.toUpperCase();",
+			"}",
+			"",
+			"// Convertir une chaîne en minuscules",
+			"export function toLowerCase(text) {",
+			"\treturn text.toLowerCase();",
+			"}",
+			"",
+			"// Mettre la première lettre en majuscule",
+			"export function capitalizeFirstLetter(text) {",
+			"\treturn text.charAt(0).toUpperCase() + text.slice(1);",
+			"}",
+			"",
+			"// Styliser en \"Titre\" (chaque mot commence par une majuscule)",
+			"export function toTitleCase(text) {",
+			"\treturn text",
+			"\t\t.toLowerCase()",
+			"\t\t.split(' ')",
+			"\t\t.map((word) => word.charAt(0).toUpperCase() + word.slice(1))",
+			"\t\t.join(' ');",
+			"}",
+			"",
+			"// Convertir en Camel Case (chaque mot sauf le premier commence par une majuscule)",
+			"export function toCamelCase(text) {",
+			"\tconst words = text.split(' ');",
+			"\tconst camelCaseWords = words.map((word, index) =>",
+			"\t\tindex === 0 ? word.toLowerCase() : capitalizeFirstLetter(word)",
+			"\t);",
+			"\treturn camelCaseWords.join('');",
+			"}",
+			"",
+			"// Convertir en Snake Case (remplacer les espaces par des underscores)",
+			"export function toSnakeCase(text) {",
+			"\treturn text.toLowerCase().replace(/ /g, '_');",
+			"}",
+			"",
+			"// Convertir en Kebab Case (remplacer les espaces par des tirets)",
+			"export function toKebabCase(text) {",
+			"\treturn text.toLowerCase().replace(/ /g, '-');",
+			"}"
+		],
+		"description": "Toutes les fonctions d'aide pour la manipulation de chaînes de caractères"
+	},
+	"Generate Unique ID": {
+		"prefix": "generateUniqueId",
+		"body": [
+			"// Generate a unique ID",
+			"export function generateUniqueId(prefix = '') {",
+			"    return prefix + Math.random().toString(36).substr(2, 9);",
+			"}"
+		],
+		"description": "Fonction pour générer un identifiant unique"
+	},
+	"Generate PIN Code": {
+		"prefix": "generatePinCode",
+		"body": [
+			"// Generate a PIN code",
+			"export function generatePinCode(length = 4) {",
+			"    const digits = '0123456789';",
+			"    let pin = '';",
+			"    for (let i = 0; i < length; i++) {",
+			"        const randomIndex = Math.floor(Math.random() * digits.length);",
+			"        pin += digits[randomIndex];",
+			"    }",
+			"    return pin;",
+			"}"
+		],
+		"description": "Fonction pour générer un code PIN"
+	},
+	"Generate Random Date": {
+		"prefix": "generateRandomDate",
+		"body": [
+			"// Generate a random date between two dates",
+			"export function generateRandomDate(start = new Date(2000, 0, 1), end = new Date()) {",
+			"    const date = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));",
+			"    return date;",
+			"}"
+		],
+		"description": "Fonction pour générer une date aléatoire"
+	},
+	"Generate Random Username": {
+		"prefix": "generateRandomUsername",
+		"body": [
+			"// Generate a random username",
+			"export function generateRandomUsername() {",
+			"    const adjectives = ['Quick', 'Lazy', 'Happy', 'Sad', 'Angry'];",
+			"    const nouns = ['Fox', 'Dog', 'Cat', 'Mouse', 'Bear'];",
+			"    const randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];",
+			"    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];",
+			"    const randomNumber = Math.floor(Math.random() * 1000);",
+			"    return `${randomAdjective}${randomNoun}${randomNumber}`;",
+			"}"
+		],
+		"description": "Fonction pour générer un nom d'utilisateur aléatoire"
+	},
+	"Generate Random Hex Color": {
+		"prefix": "generateRandomHexColor",
+		"body": [
+			"// Generate a random hex color",
+			"export function generateRandomHexColor() {",
+			"    const hex = '0123456789ABCDEF';",
+			"    let color = '#';",
+			"    for (let i = 0; i < 6; i++) {",
+			"        color += hex[Math.floor(Math.random() * 16)];",
+			"    }",
+			"    return color;",
+			"}"
+		],
+		"description": "Fonction pour générer une couleur hexadécimale aléatoire"
+	},
+	"Generate Random Sentence": {
+		"prefix": "generateRandomSentence",
+		"body": [
+			"// Generate a random sentence",
+			"export function generateRandomSentence() {",
+			"    const subjects = ['The cat', 'A dog', 'The bird', 'A man', 'The woman'];",
+			"    const verbs = ['jumps', 'runs', 'flies', 'eats', 'sleeps'];",
+			"    const objects = ['over the fence', 'under the table', 'through the window', 'on the bed', 'in the park'];",
+			"    const randomSubject = subjects[Math.floor(Math.random() * subjects.length)];",
+			"    const randomVerb = verbs[Math.floor(Math.random() * verbs.length)];",
+			"    const randomObject = objects[Math.floor(Math.random() * objects.length)];",
+			"    return `${randomSubject} ${randomVerb} ${randomObject}.`;",
+			"}"
+		],
+		"description": "Fonction pour générer une phrase aléatoire"
 	}
 }
